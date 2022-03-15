@@ -1,6 +1,6 @@
 const { Product, ProductView } = require("../models/persistence");
 
-const create = async function ({ data }) {
+const create = async function (data) {
   try {
     return await ProductView.create(data);
   } catch (e) {
@@ -8,7 +8,7 @@ const create = async function ({ data }) {
   }
 };
 
-async function index({}) {
+async function index() {
   try {
     return await ProductView.findAll({
       include: [{ model: Product }],

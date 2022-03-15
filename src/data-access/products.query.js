@@ -10,15 +10,21 @@ const destroy = async function (id) {
   }
 };
 
-const create = async function ({ data }) {
+const create = async function (data) {
   try {
-    return await product.create(data);
+    return await product.create({
+      name: data.name,
+      description: data.description,
+      category_id: data.category_id,
+      price: data.price,
+      discount: data.discount,
+    });
   } catch (e) {
     console.log("Error: ", e);
   }
 };
 
-const index = async function ({}) {
+const index = async function () {
   try {
     return await product.findAll({
       include: [
@@ -47,7 +53,7 @@ const show = async function (id) {
   }
 };
 
-const findByName = async function ({ name }) {
+const findByName = async function (name) {
   try {
     return await product.findOne({
       include: [

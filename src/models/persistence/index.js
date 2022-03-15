@@ -12,14 +12,16 @@ db.connection = new Sequelize(
   config.options
 );
 
-db.connection
-  .authenticate()
-  .then(() => {
-    console.log("Connection has been established successfully.");
-  })
-  .catch((error) => {
-    console.error("Unable to connect to the database:", error);
-  });
+if (process.env.NODE_ENV !== "test") {
+  db.connection
+    .authenticate()
+    .then(() => {
+      console.log("Connection has been established successfully.");
+    })
+    .catch((error) => {
+      console.error("Unable to connect to the database:", error);
+    });
+}
 
 fs.readdirSync(__dirname)
   .filter((file) => {

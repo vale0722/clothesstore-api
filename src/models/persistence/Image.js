@@ -2,9 +2,7 @@
 const { Model } = require("sequelize");
 
 module.exports = (sequelize, DataTypes) => {
-  class Image extends Model {
-    static associate({ models }) {}
-  }
+  class Image extends Model {}
   Image.init(
     {
       name: DataTypes.STRING(100),

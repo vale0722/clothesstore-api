@@ -5,14 +5,18 @@
   "scripts": {
     "dev": "nodemon src/app.js",
     "lint": "npx prettier --write .",
-    "test": "jest --env=jsdom"
+    "lint:ci": "npx prettier --check .",
+    "test": "jest --env=jsdom",
+    "test:ci": "jest --coverage --runInBand --ci --detectOpenHandles"
   },
   "jest": {
     "testEnvironment": "node",
+    "testResultsProcessor": "jest-sonar-reporter",
     "coveragePathIgnorePatterns": [
       "/node_modules/",
       "./src/infrastructure/storage/",
-      "./src/models/persistence/index.js"
+      "./src/models/persistence/index.js",
+      "./tests/"
     ],
     "verbose": true
   },
@@ -36,6 +40,7 @@
   },
   "devDependencies": {
     "jest": "^27.5.1",
+    "jest-sonar-reporter": "^2.0.0",
     "prettier": "2.5.1",
     "sequelize-cli": "^6.4.1"
   }

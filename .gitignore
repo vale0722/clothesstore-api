@@ -10,3 +10,5 @@ node_modules/
 .env.testing
 
 .idea
+
+test-report.xml
