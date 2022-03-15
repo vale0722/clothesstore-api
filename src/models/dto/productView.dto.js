@@ -3,35 +3,34 @@
 const { ProductDto } = require("./index");
 
 module.exports = class ProductViewDto {
+  constructor(data) {
+    this.id = data.id;
+    this.product = data.product;
+    this.browser = data.browser;
+    this.ip = data.ip;
+    this.createdAt = data.createdAt;
+    this.updatedAt = data.updatedAt;
+  }
+
   static toDTO(productView) {
-    const dto = new ProductViewDto();
-    if (productView) {
-      this.setId(productView.id);
-      this.setProduct(ProductDto.toDTO(productView.product));
-      this.setBrowser(productView.browser);
-      this.setIp(productView.ip);
-    }
-
-    return dto;
-  }
-
-  set setId(id) {
-    this.id = id;
-    return this;
-  }
-
-  set setProduct(product) {
-    this.product = product;
-    return this;
-  }
-
-  set setBrowser(browser) {
-    this.browser = browser;
-    return this;
-  }
-
-  set setIp(ip) {
-    this.ip = ip;
-    return this;
+    return new ProductDto(
+      productView
+        ? {
+            id: productView.id,
+            browser: productView.browser,
+            ip: productView.ip,
+            product: ProductDto.toDTO(productView.product),
+            createdAt: productView.created_at,
+            updatedAt: productView.updated_at,
+          }
+        : {
+            id: "",
+            browser: "",
+            ip: "",
+            product: {},
+            createdAt: "",
+            updatedAt: "",
+          }
+    );
   }
 };

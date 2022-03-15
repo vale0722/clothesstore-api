@@ -1,5 +1,7 @@
 # Clothesstore API
 
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=vale0722_clothesstore-api&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=vale0722_clothesstore-api)
+
 ## Description
 
 Api in nodejs for electronic commerce LATAM clothing store (company -imaginary- dedicated to the
