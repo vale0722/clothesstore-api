@@ -1,11 +1,11 @@
 const { ProductQuery } = require("../../data-access");
 const { destroyImage } = require("./images");
 
-module.exports = async function (product) {
+module.exports = async function (request, product) {
   try {
-    const images = ProductQuery.show(product).images;
-    await ProductQuery.destroy(product);
+    const images = (await ProductQuery.show(product)).images;
     await destroyImage(images);
+    await ProductQuery.destroy(product);
 
     return { status: 200 };
   } catch (e) {

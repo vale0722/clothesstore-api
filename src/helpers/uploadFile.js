@@ -3,7 +3,8 @@ const bucketConfig = require("../config/bucket");
 const s3 = require("../infrastructure/storage/bucket");
 
 module.exports = (file, name) => {
-  const fileContent = fs.readFileSync(file);
+  const fileContent =
+    file instanceof Buffer ? file : fs.readFileSync(file.path);
   const params = {
     Bucket: bucketConfig.bucketName,
     Key: name,

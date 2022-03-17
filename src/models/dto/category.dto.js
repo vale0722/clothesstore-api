@@ -1,6 +1,9 @@
 "use strict";
-module.exports = class CategoryDto {
+const DTO = require("./dto");
+
+module.exports = class CategoryDto extends DTO {
   constructor(data) {
+    super();
     this.id = data.id;
     this.name = data.name;
     this.description = data.description;

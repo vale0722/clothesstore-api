@@ -1,11 +1,10 @@
-const { indexProduct } = require("../use-cases/products");
+const { indexMoreSearchProduct } = require("../use-cases/products");
 
 module.exports = {
   async index(req, res) {
     const response = {};
-
     try {
-      const products = await indexProduct(req);
+      const products = await indexMoreSearchProduct(req);
       response.status = 200;
       response.body = { products };
     } catch (e) {
@@ -15,6 +14,6 @@ module.exports = {
       };
     }
 
-    res.status(response.status).json(response);
+    res.status(response.status).json(response.body);
   },
 };

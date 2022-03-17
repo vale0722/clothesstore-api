@@ -1,7 +1,7 @@
 const bucketConfig = require("../config/bucket");
 const s3 = require("../infrastructure/storage/bucket");
 
-module.exports = (file, name) => {
+module.exports = (name) => {
   const params = {
     Bucket: bucketConfig.bucketName,
     Key: name,

@@ -35,6 +35,7 @@ describe("Show a Product", () => {
         description: "Description",
         price: 1000,
         discount: 0.1,
+        total: 100,
         images: [
           {
             extension: ".png",

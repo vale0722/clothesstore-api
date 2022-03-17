@@ -1,7 +1,9 @@
 "use strict";
+const DTO = require("./dto");
 
-module.exports = class ImageDto {
+module.exports = class ImageDto extends DTO {
   constructor(data) {
+    super();
     this.id = data.id;
     this.name = data.name;
     this.extension = data.extension;
@@ -30,11 +32,5 @@ module.exports = class ImageDto {
             updatedAt: "",
           }
     );
-  }
-
-  static toCollection(images) {
-    return images.map((image) => {
-      return ImageDto.toDTO(image);
-    });
   }
 };

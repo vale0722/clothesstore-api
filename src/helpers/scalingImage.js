@@ -1,18 +1,5 @@
 const sharp = require("sharp");
 
-module.exports = (file) => {
-  sharp(file)
-    .resize(1000)
-    .then(function (newFileInfo) {
-      return {
-        status: 200,
-        file: newFileInfo,
-      };
-    })
-    .catch(function (exception) {
-      return {
-        status: 400,
-        error: exception.message,
-      };
-    });
+module.exports = async (file, name) => {
+  return await sharp(file.path).resize(100).png().toFile(name);
 };
