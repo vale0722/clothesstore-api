@@ -53,6 +53,7 @@ module.exports = {
         response.status = 201;
         response.body = { category };
       } catch (e) {
+        console.log(e);
         response.status = 400;
         response.body = {
           error: e.message,

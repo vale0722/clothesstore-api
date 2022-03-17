@@ -9,6 +9,7 @@ module.exports = class ProductDto extends DTO {
     this.id = data.id;
     this.name = data.name;
     this.description = data.description;
+    this.country = data.country;
     this.price = data.price;
     this.total = data.price - data.price * data.discount;
     this.discount = data.discount;
@@ -29,6 +30,7 @@ module.exports = class ProductDto extends DTO {
             images: ImageDto.toCollection(product.images),
             price: product.price,
             discount: product.discount,
+            country: product.country,
             createdAt: product.created_at,
             updatedAt: product.updated_at,
           }
@@ -38,6 +40,7 @@ module.exports = class ProductDto extends DTO {
             description: "",
             category: "",
             price: "",
+            country: "",
             discount: "",
             createdAt: "",
             updatedAt: "",

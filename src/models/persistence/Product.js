@@ -1,5 +1,6 @@
 "use strict";
 const { Model } = require("sequelize");
+const { Countries } = require("../../constants");
 module.exports = (sequelize, DataTypes) => {
   class Product extends Model {
     static associate({ models }) {
@@ -26,6 +27,7 @@ module.exports = (sequelize, DataTypes) => {
       description: DataTypes.STRING,
       price: DataTypes.DOUBLE,
       discount: DataTypes.DOUBLE,
+      country: DataTypes.ENUM(Countries),
     },
     {
       sequelize,

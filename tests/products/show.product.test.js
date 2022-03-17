@@ -1,6 +1,6 @@
 const request = require("supertest");
 const app = require("../../src/app");
-const { ProductQuery } = require("../../src/data-access");
+const { ProductQuery, ProductViewQuery } = require("../../src/data-access");
 
 jest.spyOn(ProductQuery, "show").mockImplementation(() => {
   return {
@@ -24,6 +24,15 @@ jest.spyOn(ProductQuery, "show").mockImplementation(() => {
   };
 });
 
+jest.spyOn(ProductViewQuery, "create").mockImplementation(() => {
+  return {
+    id: 1,
+    product_id: 1,
+    browser: "",
+    ip: "127.0.0.1",
+  };
+});
+
 describe("Show a Product", () => {
   it("should show a Product", async () => {
     const res = await request(app).get("/api/products/1");
@@ -35,7 +44,7 @@ describe("Show a Product", () => {
         description: "Description",
         price: 1000,
         discount: 0.1,
-        total: 100,
+        total: 900,
         images: [
           {
             extension: ".png",

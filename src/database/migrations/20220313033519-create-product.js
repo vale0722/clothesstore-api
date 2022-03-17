@@ -1,4 +1,5 @@
 "use strict";
+const { Countries } = require("../../constants");
 module.exports = {
   async up(queryInterface, Sequelize) {
     await queryInterface.createTable("products", {
@@ -30,6 +31,10 @@ module.exports = {
       },
       discount: {
         type: Sequelize.DOUBLE,
+      },
+      country: {
+        allowNull: false,
+        type: Sequelize.ENUM(Countries),
       },
       created_at: {
         allowNull: false,

@@ -2,10 +2,17 @@ const request = require("supertest");
 const app = require("../../src/app");
 const { CategoryQuery } = require("../../src/data-access");
 
-jest.spyOn(CategoryQuery, "update").mockImplementation((data) => {
+jest.spyOn(CategoryQuery, "update").mockImplementation((model, data) => {
   return {
     name: data.name,
     description: data.description,
+  };
+});
+
+jest.spyOn(CategoryQuery, "show").mockImplementation((data) => {
+  return {
+    name: "Category1",
+    id: 1,
   };
 });
 
