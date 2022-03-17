@@ -1,7 +1,8 @@
 const { body } = require("express-validator");
 const { ProductQuery, CategoryQuery } = require("../data-access");
-const { isImage } = require("./rules");
+const { isImage, discountByCountry } = require("./rules");
 const multer = require("multer");
+const { Countries } = require("../constants");
 const upload = multer({ dest: "/tmp/uploads" });
 
 module.exports = {
@@ -32,8 +33,9 @@ module.exports = {
           }
         });
       }),
+    body("country").isString().notEmpty().isIn(Countries),
     body("price").isNumeric().notEmpty(),
-    body("discount").isNumeric().notEmpty(),
+    body("discount").isNumeric().notEmpty().custom(discountByCountry),
     body("image_front").custom(isImage),
     body("image_back").custom(isImage),
   ],

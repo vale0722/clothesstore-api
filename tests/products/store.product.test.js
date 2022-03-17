@@ -7,6 +7,7 @@ jest.spyOn(ProductQuery, "create").mockImplementation((data) => {
     name: "Product1",
     description: "Description",
     price: 1000,
+    country: "colombia",
     discount: 0.1,
     category: {
       name: "Category1",
@@ -58,6 +59,36 @@ const errors = [
     image_front: null,
     image_back: null,
   },
+  {
+    name: "Product1",
+    description: "Description",
+    price: 1000,
+    discount: 0.1,
+    category_id: 1,
+    country: "EEUU",
+    image_front: null,
+    image_back: null,
+  },
+  {
+    name: "Product1",
+    description: "Description",
+    price: 1000,
+    discount: 0.6,
+    category_id: 1,
+    country: "colombia",
+    image_front: null,
+    image_back: null,
+  },
+  {
+    name: "Product1",
+    description: "Description",
+    price: 1000,
+    discount: 0.4,
+    category_id: 1,
+    country: "chile",
+    image_front: null,
+    image_back: null,
+  },
 ];
 
 describe("Store Product", () => {
@@ -67,6 +98,7 @@ describe("Store Product", () => {
       description: "Description",
       price: 1000,
       discount: 0.1,
+      country: "colombia",
       category_id: 1,
       image_front: null,
       image_back: null,
@@ -78,7 +110,13 @@ describe("Store Product", () => {
         name: "Product1",
         description: "Description",
         price: 1000,
+        total: 900,
         discount: 0.1,
+        country: "colombia",
+        category: {
+          description: "Description",
+          name: "Category1",
+        },
         images: [
           {
             extension: ".png",
@@ -102,7 +140,7 @@ describe("Store Product", () => {
       name: "Product1",
       description: "Description",
       price: 1000,
-      discount: 0.1,
+      discount: 0.4,
       category_id: 1,
       image_front: null,
       image_back: null,
@@ -114,7 +152,7 @@ describe("Store Product", () => {
   it.each(errors)(
     "should not create a new product with errors",
     async (req) => {
-      const res = await request(app).post("/api/products").send({ req });
+      const res = await request(app).post("/api/products").send(req);
 
       expect(res.statusCode).toEqual(402);
     }
