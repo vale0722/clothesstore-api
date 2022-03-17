@@ -14,27 +14,19 @@ const create = async function (data) {
 const index = async function () {
   try {
     return await category.findAll({
-      include: [{ model: product }],
-      group: "category.id",
+      include: [{ model: product, as: "products" }],
     });
   } catch (e) {
     console.log("Error: ", e);
   }
 };
 
-const update = async function (data) {
+const update = async function (model, data) {
   try {
-    return await category.update(
-      {
-        name: data.name,
-        description: data.description,
-      },
-      {
-        where: {
-          id: data.id,
-        },
-      }
-    );
+    return await model.update({
+      name: data.name,
+      description: data.description,
+    });
   } catch (e) {
     console.log("Error: ", e);
   }

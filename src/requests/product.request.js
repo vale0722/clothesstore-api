@@ -1,9 +1,12 @@
 const { body } = require("express-validator");
 const { ProductQuery, CategoryQuery } = require("../data-access");
 const { isImage } = require("./rules");
+const multer = require("multer");
+const upload = multer({ dest: "/tmp/uploads" });
 
 module.exports = {
   store: [
+    upload.any(),
     body("name")
       .isString()
       .notEmpty()

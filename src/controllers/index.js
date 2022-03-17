@@ -1,6 +1,6 @@
 const CategoryController = require("./category.controller");
 const ProductController = require("./product.controller");
-const ProductViewController = require("./ProductViewController");
+const ProductViewController = require("./product-view.controller");
 
 module.exports = {
   CategoryController,

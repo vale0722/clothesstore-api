@@ -31,7 +31,6 @@ const index = async function () {
         { model: category, as: "category" },
         { model: image, as: "images" },
       ],
-      group: "product.id",
     });
   } catch (e) {
     console.log("Error: ", e);
@@ -41,8 +40,7 @@ const index = async function () {
 const show = async function (id) {
   try {
     return await product.findOne({
-      where: { id: id },
-      group: "product.id",
+      where: { id },
       include: [
         { model: category, as: "category" },
         { model: image, as: "images" },

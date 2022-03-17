@@ -1,13 +1,16 @@
 "use strict";
 const CategoryDto = require("./category.dto");
 const ImageDto = require("./image.dto");
+const DTO = require("./dto");
 
-module.exports = class ProductDto {
+module.exports = class ProductDto extends DTO {
   constructor(data) {
+    super();
     this.id = data.id;
     this.name = data.name;
     this.description = data.description;
     this.price = data.price;
+    this.total = data.price - data.price * data.discount;
     this.discount = data.discount;
     this.category = data.category;
     this.images = data.images;
@@ -15,7 +18,7 @@ module.exports = class ProductDto {
     this.updatedAt = data.updatedAt;
   }
 
-  static toDTO(product) {
+  static toDTO(product, images) {
     return new ProductDto(
       product
         ? {
@@ -40,11 +43,5 @@ module.exports = class ProductDto {
             updatedAt: "",
           }
     );
-  }
-
-  static toCollection(products) {
-    return products.map((product) => {
-      return ProductDto.toDTO(product);
-    });
   }
 };

@@ -5,6 +5,8 @@ const {
   destroyProduct,
 } = require("../use-cases/products");
 const { validationResult } = require("express-validator");
+const { product, category, image } = require("../models/persistence");
+const { RegisterProductViewJob } = require("../jobs");
 
 module.exports = {
   async index(req, res) {
@@ -29,7 +31,9 @@ module.exports = {
     const response = {};
 
     try {
-      const product = await showProduct(req.id);
+      const product = await showProduct(req.params.id);
+      new RegisterProductViewJob().execute(req);
+
       if (product.id) {
         response.status = 200;
         response.body = {
@@ -81,7 +85,7 @@ module.exports = {
     const response = {};
 
     try {
-      await destroyProduct(req, req.id);
+      await destroyProduct(req, req.params.id);
       response.status = 200;
       response.body = {
         message: "Producto eliminado exítosamente",
